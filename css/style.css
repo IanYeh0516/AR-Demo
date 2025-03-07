@@ -1,0 +1,6 @@
+/* 隱藏scroll bar 讓a frame保持滿版 */
+html, body {margin: 0; height: 100%; overflow: hidden;overflow-y: hidden}
+
+.screenshot-container {
+  position: absolute; 
+  z-index: 9999;}

@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-face-aframe.prod.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.4.0/dist/aframe-extras.min.js"></script>
+        <title> AR Demo </title>
+        <link rel="stylesheet" href="css/style.css">
+        <script type="module" src="./js/core/screenshot.js"></script>
+        <script type="module" src="./js/core/fileManager.js"></script>
+        <script type="module" src="./js/ui/eventHandlers.js"></script>
+    </head>
+    <body>
+        <div class="screenshot-container">
+            <button id="screenshot-button">截圖</button>
+            <button id="screenrecord-button">錄影</button>
+            <button id="switchcamera-button">切換鏡頭</button>
+        </div>
+        <a-scene mindar-face embedded vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+            <a-camera /></a-camera>
+            <a-assets>
+                <a-asset-item id="head" src="./model/head.glb"></a-asset-item>
+            </a-assets>
+            <a-entity mindar-face-target="anchorIndex: 1">
+            <a-gltf-model src="#head" animation-mixer></a-gltf-model >
+            </a-entity>
+        </a-scene>
+    </body>
+</html>
