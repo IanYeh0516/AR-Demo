@@ -1,3 +1,4 @@
+// 還需要在重構
 
 export function downloadOrShareImage(dataUrl, filename) {
     // **檢查是否為行動裝置**

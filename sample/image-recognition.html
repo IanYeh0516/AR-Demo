@@ -1,0 +1,36 @@
+<!-- 圖像辨識網頁 -->
+
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.4.0/dist/aframe-extras.min.js"></script>
+    <title> image-recognition.html Demo </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script type="module" src="../js/core/screenshot.js"></script>
+    <script type="module" src="../js/core/fileManager.js"></script>
+    <script type="module" src="../js/ui/eventHandlers.js"></script>
+    </head>
+<body>
+    <div class="screenshot-container">
+        <button id="screenshot-button">截圖</button>
+        <button id="screenrecord-button">錄影</button>
+        <button id="switchcamera-button">切換鏡頭</button>
+    </div>
+    <!--  如果要替換圖片，請替換掉.mind檔  -->>
+    <a-scene mindar-image="imageTargetSrc: ../images/IR-targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" >
+        <a-assets>
+            <a-asset-item id="model" src="../model/IR_demo_cat.glb"></a-asset-item>
+            <a-asset-item id="crates" src="../model/IR_demo_crates.glb"></a-asset-item>
+        </a-assets>
+        <a-camera look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: ${customFields.libVersion}; objects: .clickable"></a-camera>
+        <a-entity mindar-image-target="targetIndex: 0">
+            <!-- 測試模型  -->>
+            <a-gltf-model id="model-model" scale="0 0 0" src="#model" animation-mixer></a-gltf-model>
+            <a-gltf-model id="model-crates" class="clickable" src="#crates" ></a-gltf-model>
+            <a-text id="example-text" value="Click Me!!" position="0 -0.2 0 " scale="0.7 0.7 0.7" align="center" ></a-text>
+        </a-entity>
+    </a-scene>
+</body>
+</html>
