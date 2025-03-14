@@ -3,7 +3,7 @@
 //     修正方式： 讓aframe圖層先渲染後在截圖。
 
 import { processFrame,getFrameSize } from "./screenshot.js";
-import { downloadBlob } from "./fileManager.js";
+import { handleMediaDownload } from "./fileManager.js";
 
 let mediaRecorder = null;
 let recordedChunks = [];
@@ -44,7 +44,8 @@ export function startRecording() {
     mediaRecorder.onstop = () => {
         if (recordedChunks.length > 0) {
            const blob = new Blob(recordedChunks, { type: mimeType });
-           downloadBlob(blob, mimeType);
+           handleMediaDownload(blob,"video", mimeType );
+         //  downloadBlob(blob, mimeType);
         }
     // release canvas    
         canvasRelease();

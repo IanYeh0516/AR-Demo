@@ -1,4 +1,4 @@
-import { downloadOrShareImage } from "./fileManager.js";
+import { handleMediaDownload } from "./fileManager.js";
 // 定義aframeCam
 let aframeCam = document.querySelector("a-scene");
 // 定義webCam ，注意這個鬼東西一開始無法抓到。
@@ -11,14 +11,14 @@ export function captureScreenshot() {
     // process frame 
     processFrame();
     // download
-    downloadOrShareImage(tempCanvas.toDataURL("image/png"), `screenshot_${Date.now()}.png`);
+    handleMediaDownload(tempCanvas.toDataURL("image/png"),"image","image/png");
     // rest tempCanvas
     tempCtx.clearRect(0,0,webcam.clientWidth, webcam.clientHeight);
 }
 //frame logic
 export function processFrame(){
     //有一個問題是一開始無法載入webcam ，因此這裡再次檢查並載入
-    if(!webcam){webcam  =document.querySelector("video");}
+    if(!webcam||webcam!==document.querySelector("video") ){webcam=document.querySelector("video");}
     //檢查狀態 
     if (!aframeCam || !webcam) {
             console.warn("找不到a-scene or webcam");
