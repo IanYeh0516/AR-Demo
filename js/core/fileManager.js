@@ -31,7 +31,7 @@ function convertDataUrlToBlob(dataUrl) {
 
 // 下載 Blob 檔案
 function downloadFile(blob, mimeType) {
-    const extension = getFileExtension(mimeType) || ".bin";
+    const extension = getFileExtension(mimeType);
     const fileName = nameFormater() + extension;
     const url = URL.createObjectURL(blob);
     const link = Object.assign(document.createElement("a"), { href: url, download: fileName });
@@ -71,7 +71,7 @@ function nameFormater() {
 
 // 取得副檔名
 function getFileExtension(mimeType) {
-    return mimeToExtension.get(mimeType.toLowerCase()) || ".bin"; // 確保 `mimeType` 小寫匹配
+    return mimeToExtension.get(mimeType.toLowerCase()); // 確保 `mimeType` 小寫匹配
 }
 
 // 副檔名 Map（未來可擴展）
